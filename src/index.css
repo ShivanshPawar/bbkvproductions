@@ -1,0 +1,304 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+*{
+  user-select: none;
+}
+
+/* Responsive touch improvements */
+@media (max-width: 768px) {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Improve touch targets on mobile */
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Ensure default cursor on mobile/tablet */
+  body {
+    cursor: auto !important;
+  }
+  
+  /* Remove custom cursor styles on mobile */
+  .cursor-target {
+    cursor: pointer !important;
+  }
+}
+
+.fonty{
+  font-family: 'VT323', monospace;
+
+}
+
+/* Font Setup */
+.font-pressStart {
+  font-family: 'Press Start 2P', monospace !important;
+}
+
+/* Blinking Cursor */
+.cursor::after {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 1em;
+  background: black;
+  margin-left: 4px;
+  animation: blink 1s steps(2, start) infinite;
+}
+
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Glitch Effect */
+@keyframes glitch {
+
+  0%,
+  100% {
+    filter: drop-shadow(1px 0 red) drop-shadow(-1px 0 blue);
+  }
+
+  50% {
+    filter: drop-shadow(0 1px red) drop-shadow(0 -1px blue);
+  }
+}
+
+.animate-glitch {
+  animation: glitch 2s infinite alternate;
+}
+
+/* Flicker (for text or logo) */
+@keyframes flicker {
+  0% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+
+  50% {
+    opacity: 0.85;
+    transform: translateY(0.5px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(-0.5px);
+  }
+}
+
+.animate-flicker {
+  animation: flicker 1.5s infinite;
+}
+
+/* CRT Scanlines */
+.crt-lines {
+  background: repeating-linear-gradient(rgba(0, 0, 0, 0.05) 0px,
+      rgba(0, 0, 0, 0.05) 2px,
+      transparent 2px,
+      transparent 4px);
+  mix-blend-mode: multiply;
+  z-index: 0;
+}
+
+.vintage-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center,
+      rgba(0, 0, 0, 0) 50%,
+      rgba(0, 0, 0, 0.25) 100%);
+  z-index: 1;
+}
+
+
+.glitch-font {
+  font-family: 'VT323', monospace;
+  position: relative;
+}
+
+@keyframes glitch {
+  0% {
+    clip-path: inset(0 0 100% 0);
+  }
+
+  10% {
+    clip-path: inset(0 0 75% 0);
+  }
+
+  20% {
+    clip-path: inset(15% 0 30% 0);
+  }
+
+  30% {
+    clip-path: inset(65% 0 0 0);
+  }
+
+  40% {
+    clip-path: inset(85% 0 5% 0);
+  }
+
+  50% {
+    clip-path: inset(45% 0 25% 0);
+  }
+
+  60% {
+    clip-path: inset(10% 0 40% 0);
+  }
+
+  70% {
+    clip-path: inset(35% 0 15% 0);
+  }
+
+  80% {
+    clip-path: inset(95% 0 0 0);
+  }
+
+  90% {
+    clip-path: inset(5% 0 85% 0);
+  }
+
+  100% {
+    clip-path: inset(0 0 100% 0);
+  }
+}
+
+.after\\:animate-glitch::after {
+  animation: glitch 1s infinite;
+  color: #fec700;
+  opacity: 0.6;
+}
+
+nav{
+  font-family: 'VT323', monospace;
+}
+
+/* src/components/Cinema.css */
+iframe {
+  pointer-events: none; /* prevent interaction */
+}
+
+/* Responsive improvements for mobile */
+@media (max-width: 640px) {
+  .hero {
+    padding-top: 80px; /* Account for mobile navbar */
+  }
+  
+  /* Improve text readability on small screens */
+  .text-6xl {
+    font-size: 2.5rem;
+    line-height: 1;
+  }
+  
+  .text-7xl {
+    font-size: 3rem;
+    line-height: 1;
+  }
+}
+
+/* Fix scrolling issues */
+html {
+  scroll-behavior: auto; /* Let Lenis handle smooth scrolling */
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+#root {
+  height: 100%;
+}
+
+/* Ensure proper scrolling on mobile */
+@media (max-width: 768px) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  body {
+    -webkit-overflow-scrolling: touch;
+    overflow-x: hidden;
+  }
+}
+
+/* Fix for iOS Safari scrolling */
+@supports (-webkit-touch-callout: none) {
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Prevent overlapping issues */
+section {
+  position: relative;
+  z-index: 1;
+}
+
+/* Ensure proper spacing between sections */
+section + section {
+  margin-top: 0;
+}
+
+/* Fix for accolades timeline */
+#accolades .relative {
+  position: relative;
+  z-index: 1;
+}
+
+#accolades .absolute {
+  position: absolute;
+  z-index: 2;
+}
+
+/* Improve section transitions */
+.hero {
+  position: relative;
+  z-index: 2;
+}
+
+/* Ensure smooth transitions between sections */
+main > section {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Fix for mobile navbar overlap */
+@media (max-width: 768px) {
+  .hero {
+    padding-top: 100px;
+  }
+  
+  #about {
+    padding-top: 20px;
+  }
+}
+
+/* Custom cursor only on desktop */
+@media (min-width: 769px) {
+  .cursor-target {
+    cursor: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .cursor-target {
+    cursor: pointer;
+  }
+}
